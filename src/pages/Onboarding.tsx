@@ -85,9 +85,10 @@ export const Onboarding: React.FC = () => {
 
       setCreatedChildId(child.id);
       setStep('handoff');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating child:', error);
-      alert('Error creating profile. Please try again.');
+      const errorMessage = error?.message || JSON.stringify(error);
+      alert(`Error creating profile: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
